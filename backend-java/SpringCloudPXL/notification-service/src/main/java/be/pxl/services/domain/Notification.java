@@ -7,19 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "notification")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long organizationId;
-    private Long departmentId;
-    private String name;
-    private int age;
-    private String position;
+    private String from;
+    private String to;
+    private String subject;
+    private String message;
+
 }

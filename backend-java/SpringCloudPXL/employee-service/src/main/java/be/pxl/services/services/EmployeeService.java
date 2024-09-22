@@ -14,6 +14,26 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public List<Employee> getAllEmployees() {
-        return List.of();
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee addEmployee(Employee newEmployee) {
+        return employeeRepository.save(newEmployee);
+    }
+
+    @Override
+    public Employee getEmployeeById(Long id) {
+        return employeeRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByDepartment(Long departmentId) {
+        return employeeRepository.findByDepartmentId(departmentId);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByOrganization(Long organizationId) {
+        return employeeRepository.findByOrganizationId(organizationId);
     }
 }

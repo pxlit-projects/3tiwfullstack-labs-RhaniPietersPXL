@@ -1,25 +1,28 @@
 package be.pxl.services.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
-@Table(name = "employee")
+@Table(name = "department")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Long organizationId;
-    private Long departmentId;
     private String name;
-    private int age;
+    @JsonIgnore
+    private List<Employee> employees;
     private String position;
 }
