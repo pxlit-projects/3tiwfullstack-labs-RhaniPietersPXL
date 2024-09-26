@@ -1,6 +1,5 @@
 package be.pxl.services.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +21,8 @@ public class Department {
 
     private Long organizationId;
     private String name;
-    @JsonIgnore
+
+    @Transient
     private List<Employee> employees;
     private String position;
 }
