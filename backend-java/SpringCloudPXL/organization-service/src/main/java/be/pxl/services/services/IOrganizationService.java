@@ -1,17 +1,18 @@
 package be.pxl.services.services;
 
 import be.pxl.services.domain.Organization;
+import be.pxl.services.domain.dto.OrganizationResponse;
 
 import java.util.List;
 
 public interface IOrganizationService {
-    List<Organization> getAllOrganizations();
+    List<OrganizationResponse> getAllOrganizations();
 
-    Organization getOrganizationById(Long id);
+    OrganizationResponse getOrganizationById(Long id);
 
-    Organization getOrganizationWithDepartmentsById(Long id);
+    OrganizationResponse getOrganizationWithDepartmentsById(Long id);
 
-    Organization getOrganizationWithDepartmentsAndEmployeesById(Long id);
+    OrganizationResponse getOrganizationWithDepartmentsAndEmployeesById(Long id);
 
-    Organization getOrganizationWithEmployeesById(Long id);
+    OrganizationResponse getOrganizationWithEmployeesById(Long id);
 }

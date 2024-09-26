@@ -1,6 +1,7 @@
 package be.pxl.services.controller;
 
 import be.pxl.services.domain.Organization;
+import be.pxl.services.domain.dto.OrganizationResponse;
 import be.pxl.services.services.IOrganizationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,22 +18,22 @@ public class OrganizationController {
     private final IOrganizationService organizationService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Organization> findById(@PathVariable Long id) {
+    public ResponseEntity<OrganizationResponse> findById(@PathVariable Long id) {
         return new ResponseEntity<>(organizationService.getOrganizationById(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/with-departments")
-    public ResponseEntity<Organization> findByIdWithDepartments(@PathVariable Long id) {
+    public ResponseEntity<OrganizationResponse> findByIdWithDepartments(@PathVariable Long id) {
         return new ResponseEntity<>(organizationService.getOrganizationWithDepartmentsById(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/with-departments-and-employees")
-    public ResponseEntity<Organization> findByIdWithDepartmentsAndEmployees(@PathVariable Long id) {
+    public ResponseEntity<OrganizationResponse> findByIdWithDepartmentsAndEmployees(@PathVariable Long id) {
         return new ResponseEntity<>(organizationService.getOrganizationWithDepartmentsAndEmployeesById(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/with-employees")
-    public ResponseEntity<Organization> findByIdWithEmployees(@PathVariable Long id) {
+    public ResponseEntity<OrganizationResponse> findByIdWithEmployees(@PathVariable Long id) {
         return new ResponseEntity<>(organizationService.getOrganizationWithEmployeesById(id), HttpStatus.OK);
     }
 }

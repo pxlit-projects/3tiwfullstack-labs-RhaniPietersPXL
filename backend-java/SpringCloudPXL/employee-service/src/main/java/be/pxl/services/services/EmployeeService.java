@@ -1,6 +1,8 @@
 package be.pxl.services.services;
 
 import be.pxl.services.domain.Employee;
+import be.pxl.services.domain.dto.EmployeeRequest;
+import be.pxl.services.domain.dto.EmployeeResponse;
 import be.pxl.services.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,27 +15,45 @@ public class EmployeeService implements IEmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public List<EmployeeResponse> getAllEmployees() {
+        List<Employee> employees = employeeRepository.findAll();
+        return employees.stream().map(this::mapToEmployeeResponse).toList();
+    }
+
+    private EmployeeResponse mapToEmployeeResponse(Employee employee) {
+        return EmployeeResponse.builder()
+                .name(employee.getName())
+                .departmentId(employee.getDepartmentId())
+                .organizationId(employee.getOrganizationId())
+                .build();
     }
 
     @Override
-    public Employee addEmployee(Employee newEmployee) {
-        return employeeRepository.save(newEmployee);
+    public void addEmployee(EmployeeRequest newEmployee) {
+        Employee employee = Employee.builder()
+                .name(newEmployee.getName())
+                .departmentId(newEmployee.getDepartmentId())
+                .organizationId(newEmployee.getOrganizationId())
+                .build();
+        employeeRepository.save(employee);
     }
 
     @Override
-    public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).orElse(null);
+    public EmployeeResponse getEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        assert employee != null;
+        return mapToEmployeeResponse(employee);
     }
 
     @Override
-    public List<Employee> getEmployeesByDepartment(Long departmentId) {
-        return employeeRepository.findByDepartmentId(departmentId);
+    public List<EmployeeResponse> getEmployeesByDepartment(Long departmentId) {
+        List<Employee> employees = employeeRepository.findByDepartmentId(departmentId);
+        return employees.stream().map(this::mapToEmployeeResponse).toList();
     }
 
     @Override
-    public List<Employee> getEmployeesByOrganization(Long organizationId) {
-        return employeeRepository.findByOrganizationId(organizationId);
+    public List<EmployeeResponse> getEmployeesByOrganization(Long organizationId) {
+        List<Employee> employees = employeeRepository.findByOrganizationId(organizationId);
+        return employees.stream().map(this::mapToEmployeeResponse).toList();
     }
 }
