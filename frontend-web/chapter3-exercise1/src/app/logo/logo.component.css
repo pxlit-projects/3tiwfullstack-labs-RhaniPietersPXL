@@ -1,0 +1,12 @@
+div{
+  width: auto;
+  height: 140px;
+  background: green;
+  text-align: center;
+  padding: 5px;
+}
+
+img{
+  max-height: 100%;
+  max-width: 100%;
+}
