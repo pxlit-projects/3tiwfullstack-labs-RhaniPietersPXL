@@ -1,0 +1,50 @@
+services:
+  employeeservice-db:
+    image: mysql:8.0
+    container_name: employeeservice-db
+    ports:
+      - "3307:3306"  # Host poort naar container poort
+    environment:
+      MYSQL_DATABASE: 'employeeservice_db'
+      MYSQL_ROOT_PASSWORD: 'toor'
+    volumes:
+      - db_data_employeeservice:/var/lib/mysql
+
+  departmentservice-db:
+    image: mysql:8.0
+    container_name: departmentservice-db
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_DATABASE: 'departmentservice_db'
+      MYSQL_ROOT_PASSWORD: 'toor'
+    volumes:
+      - db_data_departmentservice:/var/lib/mysql
+
+  organizationservice-db:
+    image: mysql:8.0
+    container_name: organizationservice-db
+    ports:
+      - "3309:3306"  #
+    environment:
+      MYSQL_DATABASE: 'organizationservice_db'
+      MYSQL_ROOT_PASSWORD: 'toor'
+    volumes:
+      - db_data_organizationservice:/var/lib/mysql
+
+  notificationservice-db:
+    image: mysql:8.0
+    container_name: notificationservice-db
+    ports:
+      - "3310:3306"
+    environment:
+      MYSQL_DATABASE: 'notificationservice_db'
+      MYSQL_ROOT_PASSWORD: 'toor'
+    volumes:
+      - db_data_notificationservice:/var/lib/mysql
+
+volumes:
+  db_data_employeeservice:
+  db_data_departmentservice:
+  db_data_organizationservice:
+  db_data_notificationservice:
