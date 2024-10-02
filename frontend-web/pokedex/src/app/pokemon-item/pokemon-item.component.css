@@ -1,7 +1,46 @@
 :host {
-  padding: 1rem;
-  margin: 0.5rem;
-  border-radius: 3px;
-  border: 1px solid #ccc;
   display: block;
+  margin: 0.5rem;
+  color: white;
+}
+
+.pokemon-item {
+  width: 250px;
+  height: 300px;
+  position: relative;
+  float: left;
+  margin: 10px;
+}
+
+.pokemon-item div{
+  width: 250px;
+  height: 300px;
+  position: relative;
+  float: left;
+}
+
+.pokemon-content {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.pokemon-item img {
+  width: 100px;
+  height: 100px;
+}
+
+.grass {
+  background-color: darkseagreen;
+}
+
+.fire {
+  background-color: indianred;
+}
+
+.water {
+  background-color: steelblue;
+}
+
+.selected {
+  border: 2px solid gold;
 }
