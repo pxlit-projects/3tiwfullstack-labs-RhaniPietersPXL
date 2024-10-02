@@ -1,0 +1,5 @@
+<h1>Angular Calculator</h1>
+<input [(ngModel)]="numberOne">
+<input [(ngModel)]="numberTo">
+<button (click)="add()">Optellen</button>
+<div *ngIf="showResult">De uitkomst is: {{ uitkomst }}</div>

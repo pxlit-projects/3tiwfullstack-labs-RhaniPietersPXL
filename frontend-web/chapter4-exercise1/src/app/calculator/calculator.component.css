@@ -1,0 +1,11 @@
+input{
+  display: block;
+  margin: 5px;
+}
+
+button{
+  background: blue;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+}
