@@ -11,6 +11,7 @@ import {NgClass} from "@angular/common";
 })
 export class CustomerItemComponent {
   @Input() customer!: Customer;
+
   getDetails(): void {
     console.log(this.customer);
   }
