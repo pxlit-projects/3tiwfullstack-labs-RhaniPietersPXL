@@ -12,4 +12,13 @@ import {NgClass} from "@angular/common";
 export class PokemonItemComponent {
   @Input() pokemon!: Pokemon;
   @Input() isSelected!: boolean;
+
+  getColors(){
+    return {
+      'grass': this.pokemon.type === 'grass',
+      'fire': this.pokemon.type === 'fire',
+      'water': this.pokemon.type === 'water',
+      'selected': this.isSelected
+    };
+  }
 }

@@ -1,7 +1,5 @@
-<div [ngClass]="{ 'selected': isSelected }" class="pokemon-item">
-  <div [ngClass]="pokemon.type" class="pokemon-content">
+<div [ngClass]="getColors()" class="pokemon-item">
     <h1>{{ pokemon.id }}. {{ pokemon.name }}</h1>
     <p>Type: {{ pokemon.type }}</p>
     <img [src]="pokemon.icon" alt="{{ pokemon.name }} icon">
-  </div>
 </div>
