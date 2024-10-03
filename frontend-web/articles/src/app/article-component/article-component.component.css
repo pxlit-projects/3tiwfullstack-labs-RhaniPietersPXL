@@ -1,0 +1,14 @@
+tbody tr:nth-child(even) {
+  background: red;
+}
+
+tbody tr:nth-child(odd) {
+  background: green;
+}
+
+tbody img {
+  width: 100px;
+  height: 100px;
+}
+
+

@@ -3,6 +3,7 @@ export class Article {
     public id: number,
     public naam: string,
     public aankoopprijs: number,
-    public verkoopprijs: number
+    public verkoopprijs: number,
+    public image: string
   ) {}
 }

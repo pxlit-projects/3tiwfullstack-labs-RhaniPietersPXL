@@ -1,0 +1,21 @@
+<table>
+  <thead>
+  <tr>
+    <th>Artikelnummer</th>
+    <th>Artikelnaam</th>
+    <th>Aankoopprijs</th>
+    <th>Verkoopprijs</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (item of articles; track item.id) {
+      <tr (click)="showDetails(item)">
+        <td>{{ item.id }}</td>
+        <td>{{ item.naam }}</td>
+        <td>{{ item.aankoopprijs }}</td>
+        <td>{{ item.verkoopprijs }}</td>
+        <td><img [src]="item.image"/></td>
+        <td><a [href]="'https://www.google.be/search?q=' + item.naam" target="_blank">info</a></td>
+        }
+  </tbody>
+</table>
