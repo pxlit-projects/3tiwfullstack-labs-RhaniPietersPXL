@@ -17,10 +17,10 @@ import java.util.List;
 public class DepartmentController {
     private final IDepartmentService departmentService;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Void> add(@RequestBody DepartmentRequest newDepartment) {
         departmentService.addDepartment(newDepartment);
-        return new ResponseEntity<>( HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

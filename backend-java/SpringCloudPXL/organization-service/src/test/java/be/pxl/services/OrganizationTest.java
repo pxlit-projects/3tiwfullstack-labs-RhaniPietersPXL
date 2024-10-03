@@ -1,7 +1,7 @@
 package be.pxl.services;
 
-import be.pxl.services.domain.Employee;
-import be.pxl.services.repository.EmployeeRepository;
+import be.pxl.services.domain.Organization;
+import be.pxl.services.repository.OrganizationRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest()
+@SpringBootTest(classes = OrganizationServiceApplication.class)
 @Testcontainers
 @AutoConfigureMockMvc
-public class EmployeeTest {
-
+public class OrganizationTest {
     @Autowired
     MockMvc mockMvc;
 
@@ -31,7 +30,7 @@ public class EmployeeTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private OrganizationRepository organizationRepository;
 
     @Container
     private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:5.7");
@@ -44,20 +43,19 @@ public class EmployeeTest {
     }
 
     @Test
-    public void testCreateEmployee() throws Exception {
-        Employee employee = Employee.builder()
-                .age(30)
-                .name("Doe")
-                .position("student")
+    public void testCreateOrganization() throws Exception {
+        Organization organization = Organization.builder()
+                .name("PXL")
+                .address("Elfde-Liniestraat 24")
                 .build();
 
-        String employeeString = objectMapper.writeValueAsString(employee);
+        String organizttionString = objectMapper.writeValueAsString(organization);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/employee")
+        mockMvc.perform(MockMvcRequestBuilders.post("/organization")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(employeeString))
+                        .content(organizttionString))
                 .andExpect(status().isCreated());
 
-        assertEquals(1, employeeRepository.findAll().size());
+        assertEquals(1, organizationRepository.findAll().size());
     }
 }

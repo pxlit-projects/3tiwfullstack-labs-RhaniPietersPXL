@@ -1,7 +1,8 @@
 package be.pxl.services;
 
-import be.pxl.services.domain.Employee;
-import be.pxl.services.repository.EmployeeRepository;
+import be.pxl.services.domain.Department;
+import be.pxl.services.domain.dto.DepartmentRequest;
+import be.pxl.services.repository.DepartmentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest()
+@SpringBootTest(classes = DepartmentServiceApplication.class)
 @Testcontainers
 @AutoConfigureMockMvc
-public class EmployeeTest {
-
+public class DepartmentTest {
     @Autowired
     MockMvc mockMvc;
 
@@ -31,7 +31,7 @@ public class EmployeeTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private DepartmentRepository departmentRepository;
 
     @Container
     private static MySQLContainer mySQLContainer = new MySQLContainer("mysql:5.7");
@@ -44,20 +44,20 @@ public class EmployeeTest {
     }
 
     @Test
-    public void testCreateEmployee() throws Exception {
-        Employee employee = Employee.builder()
-                .age(30)
-                .name("Doe")
-                .position("student")
-                .build();
+    public void testCreateDepartment() throws Exception {
+        DepartmentRequest departmentRequest = new DepartmentRequest();
+        departmentRequest.setName("student");
+        departmentRequest.setOrganizationId(1L);
 
-        String employeeString = objectMapper.writeValueAsString(employee);
+        // Adjust the position field if required
+        departmentRequest.setPosition("PXL");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/employee")
+        String departmentString = objectMapper.writeValueAsString(departmentRequest);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/department")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(employeeString))
+                        .content(departmentString))
                 .andExpect(status().isCreated());
-
-        assertEquals(1, employeeRepository.findAll().size());
+        assertEquals(1, departmentRepository.findAll().size());
     }
 }
