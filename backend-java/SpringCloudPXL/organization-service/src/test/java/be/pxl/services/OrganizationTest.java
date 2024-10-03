@@ -17,6 +17,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(classes = OrganizationServiceApplication.class)
@@ -43,19 +44,18 @@ public class OrganizationTest {
     }
 
     @Test
-    public void testCreateOrganization() throws Exception {
+    public void testFindById() throws Exception {
+        // Arrange: Create an organization to retrieve
         Organization organization = Organization.builder()
                 .name("PXL")
                 .address("Elfde-Liniestraat 24")
                 .build();
+        organizationRepository.save(organization);
 
-        String organizttionString = objectMapper.writeValueAsString(organization);
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/organization")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(organizttionString))
-                .andExpect(status().isCreated());
-
-        assertEquals(1, organizationRepository.findAll().size());
+        // Act: Perform a GET request to find the organization by ID
+        mockMvc.perform(MockMvcRequestBuilders.get("/organization/{id}", organization.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("PXL"))
+                .andExpect(jsonPath("$.address").value("Elfde-Liniestraat 24"));
     }
 }

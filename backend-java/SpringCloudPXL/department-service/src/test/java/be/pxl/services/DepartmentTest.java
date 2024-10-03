@@ -1,7 +1,6 @@
 package be.pxl.services;
 
 import be.pxl.services.domain.Department;
-import be.pxl.services.domain.dto.DepartmentRequest;
 import be.pxl.services.repository.DepartmentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -45,14 +44,14 @@ public class DepartmentTest {
 
     @Test
     public void testCreateDepartment() throws Exception {
-        DepartmentRequest departmentRequest = new DepartmentRequest();
-        departmentRequest.setName("student");
-        departmentRequest.setOrganizationId(1L);
+        Department department = Department.builder()
+                .name("student")
+                .organizationId(1L)
+                .position("PXL")
+                .employees(null)
+                .build();
 
-        // Adjust the position field if required
-        departmentRequest.setPosition("PXL");
-
-        String departmentString = objectMapper.writeValueAsString(departmentRequest);
+        String departmentString = objectMapper.writeValueAsString(department);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/department")
                         .contentType(MediaType.APPLICATION_JSON)
