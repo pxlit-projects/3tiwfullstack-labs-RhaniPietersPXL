@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotificationRequest {
-    private String from;
-    private String to;
-    private String subject;
     private String message;
-
+    private String sender;
 }
