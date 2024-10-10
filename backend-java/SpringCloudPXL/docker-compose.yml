@@ -44,17 +44,6 @@ services:
     volumes:
       - db_data_notificationservice:/var/lib/mysql
 
-  discoveryservice-db:
-    image: mysql:8.0
-    container_name: discoveryservice-db
-    ports:
-      - "3311:3306"
-    environment:
-      MYSQL_DATABASE: 'discoveryservice'
-      MYSQL_ROOT_PASSWORD: 'toor'
-    volumes:
-      - discoveryservice:/var/lib/mysql
-
 volumes:
   db_data_employeeservice:
   db_data_departmentservice:
