@@ -24,18 +24,17 @@ export class CustomerListComponent implements OnInit {
     ];
 
     this.customers[1].isLoyal = true;
-    this.filteredData = this.customers;
   }
 
   handleFilter(filter: Filter) {
     this.filteredData = this.customers.filter(customer => this.isCustomerMatchingFilter(customer, filter));
+    console.log(this.filteredData);
   }
 
   private isCustomerMatchingFilter(customer: Customer, filter: Filter): boolean {
     const matchesName = customer.name.toLowerCase().includes(filter.name.toLowerCase());
     const matchesCity = customer.city.toLowerCase().includes(filter.city.toLowerCase());
     const matchesVat = filter.vat ? customer.vat === filter.vat : true;
-
     return matchesName && matchesCity && matchesVat;
   }
 

@@ -1,11 +1,12 @@
 import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Customer} from "../../../shared/models/customer.model";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-add-customer',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './add-customer.component.html',
   styleUrl: './add-customer.component.css'
 })
