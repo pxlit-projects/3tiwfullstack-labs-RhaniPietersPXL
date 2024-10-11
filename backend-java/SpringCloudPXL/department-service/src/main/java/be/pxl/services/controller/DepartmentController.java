@@ -1,6 +1,5 @@
 package be.pxl.services.controller;
 
-import be.pxl.services.domain.Department;
 import be.pxl.services.domain.dto.DepartmentRequest;
 import be.pxl.services.domain.dto.DepartmentResponse;
 import be.pxl.services.services.IDepartmentService;
@@ -28,7 +27,7 @@ public class DepartmentController {
         return new ResponseEntity<>(departmentService.getDepartmentById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<DepartmentResponse>> findAll() {
         return new ResponseEntity<>(departmentService.getAllDepartments(), HttpStatus.OK);
     }

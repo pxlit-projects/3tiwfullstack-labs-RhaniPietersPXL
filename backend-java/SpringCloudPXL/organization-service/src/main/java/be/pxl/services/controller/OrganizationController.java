@@ -11,11 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/organization")
 @RequiredArgsConstructor
 public class OrganizationController {
     private final IOrganizationService organizationService;
+
+    @GetMapping
+    public ResponseEntity<List<OrganizationResponse>> findById() {
+        return new ResponseEntity<>(organizationService.getAllOrganizations(), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrganizationResponse> findById(@PathVariable Long id) {
