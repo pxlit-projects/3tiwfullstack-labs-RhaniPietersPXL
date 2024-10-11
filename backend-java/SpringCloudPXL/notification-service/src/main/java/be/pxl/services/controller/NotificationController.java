@@ -14,8 +14,8 @@ public class NotificationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void sendMessages(@RequestBody Notification notification) {
-        notificationService.sendMessages(notification);
+    public void sendMessage(@RequestBody Notification notification) {
+        notificationService.sendMessage(notification);
     }
 
 }

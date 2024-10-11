@@ -17,10 +17,6 @@ import java.util.List;
 public class OrganizationRequest {
     private String name;
     private String address;
-
-    @Transient
     private List<Employee> employees;
-    @Transient
     private List<Department> departments;
-
 }

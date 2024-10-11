@@ -1,8 +1,10 @@
 package be.pxl.services.services;
 
+import be.pxl.services.client.EmployeeClient;
 import be.pxl.services.domain.Department;
 import be.pxl.services.domain.dto.DepartmentRequest;
 import be.pxl.services.domain.dto.DepartmentResponse;
+import be.pxl.services.domain.dto.EmployeeResponse;
 import be.pxl.services.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepartmentService implements IDepartmentService {
     private final DepartmentRepository departmentRepository;
+    private final EmployeeClient employeeClient;
+
 
     @Override
     public List<DepartmentResponse> getAllDepartments() {
@@ -52,6 +56,14 @@ public class DepartmentService implements IDepartmentService {
     @Override
     public List<DepartmentResponse> getDepartmentsWithEmployeesByOrganization(Long organizationId) {
         List<Department> departments = departmentRepository.findByOrganizationId(organizationId);
-        return departments.stream().map(this::mapToDepartmentResponse).toList();
+        return departments.stream()
+                .map(department -> {
+                    List<EmployeeResponse> employees = employeeClient.getEmployeesFromDepartment(department.getId());
+                    return DepartmentResponse.builder()
+                            .name(department.getName())
+                            .organizationId(department.getOrganizationId())
+                            .employees(employees)
+                            .build();
+                }).toList();
     }
 }

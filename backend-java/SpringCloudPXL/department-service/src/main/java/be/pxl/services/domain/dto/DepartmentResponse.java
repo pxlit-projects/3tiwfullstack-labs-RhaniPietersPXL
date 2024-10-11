@@ -16,8 +16,7 @@ import java.util.List;
 public class DepartmentResponse {
     private Long organizationId;
     private String name;
-    @Transient
-    private List<Employee> employees;
+    private List<EmployeeResponse> employees;
     private String position;
 }
 

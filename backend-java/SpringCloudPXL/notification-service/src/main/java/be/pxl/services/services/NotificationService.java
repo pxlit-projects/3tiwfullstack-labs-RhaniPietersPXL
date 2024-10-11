@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class NotificationService implements INotificationService {
+
     private static final Logger log = LoggerFactory.getLogger(NotificationService.class);
 
     @Override
-    public void sendMessages(Notification notification) {
+    public void sendMessage(Notification notification) {
         log.info("Receiving notifications...");
         log.info("Sending ... {}", notification.getMessage());
         log.info("TO {}", notification.getSender());
