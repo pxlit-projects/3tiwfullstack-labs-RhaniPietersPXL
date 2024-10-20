@@ -1,12 +1,12 @@
 <div [formGroup]="formGroup">
   <label for="name">Product Name:</label>
-  <input id="name" formControlName="name"/>
+  <input id="name" formControlName="name"/><br>
   @if (formGroup.get('name')?.hasError('required') && (formGroup.get('name')?.touched || formGroup.get('name')?.dirty)) {
     <p>Required</p>
   }
 
   <label for="description">Description:</label>
-  <textarea id="description" formControlName="description"></textarea>
+  <textarea id="description" formControlName="description"></textarea><br>
   @if (formGroup.get('description')?.hasError('required') && (formGroup.get('description')?.touched || formGroup.get('description')?.dirty)) {
     <p>Required</p>
   }
@@ -15,7 +15,7 @@
   }
 
   <label for="price">Price:</label>
-  <input id="price" type="number" formControlName="price"/>
+  <input id="price" type="number" formControlName="price"/><br>
   @if (formGroup.get('price')?.hasError('required') && (formGroup.get('price')?.touched || formGroup.get('price')?.dirty)) {
     <p>Required</p>
   }
