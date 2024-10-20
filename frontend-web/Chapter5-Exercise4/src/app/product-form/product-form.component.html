@@ -1,0 +1,3 @@
+<form [formGroup]="mainForm" (ngSubmit)="OnSubmit()">
+    <app-product-details [formGroup]="details" (notify)="catchNotification($event)"></app-product-details>
+</form>
