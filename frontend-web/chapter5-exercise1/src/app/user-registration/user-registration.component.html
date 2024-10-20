@@ -1,0 +1,31 @@
+<form #myForm="ngForm" ngNativeValidate (ngSubmit)="onSubmit(myForm)">
+  <label for="fullname">Full Name</label>
+  <input id="fullname" name="fullname" type="text" [(ngModel)]="fullName" required #name="ngModel" />
+  @if(!name.valid && (name.dirty || name.touched)){
+    <p>Gelieve je naam in te vullen!</p>
+  }
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" [(ngModel)]="eMail" required #email="ngModel"/>
+  @if(!email.valid && (email.dirty || email.touched)){
+    <p>Gelieve je e-mail in te vullen!</p>
+  }
+  <label for="password">Password</label>
+  <input id="password"  name="password" type="password" [(ngModel)]="password" required #passwordOne="ngModel"/>
+  @if(!passwordOne.valid && (passwordOne.dirty || passwordOne.touched)){
+    <p>Gelieve je passwoord in te vullen!</p>
+  }
+  <label for="confirmpassword">Confirm Password</label>
+  <input id="confirmpassword" name="confirmpassword" type="password" [(ngModel)]="confirmPassword" required #passwordTwo="ngModel"/>
+  @if(!passwordTwo.valid && (passwordTwo.dirty || passwordTwo.touched)){
+    <p>Gelieve je passwoord bevestigen in te vullen!</p>
+  }
+  @if(passwordTwo != passwordOne && (passwordTwo.dirty || passwordTwo.touched)){
+    <p>De passwoorden matchen niet!</p>
+  }
+  <button type="submit">Submit</button>
+</form>
+
+
+
+
+

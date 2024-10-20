@@ -1,0 +1,22 @@
+<form [formGroup]="Form" (ngSubmit)="onSubmit()">
+  <div formArrayName="skills">
+    @for (skillForm of skills.controls; let i = $index; track skillForm) {
+      <div [formGroupName]="i">
+        <label for="skill-{{i}}">Skill</label>
+        <input id="skill-{{i}}" type="text" formControlName="skillName">
+        @if (skillForm.get('skillName')?.hasError('required') && (Form.get('skillName')?.touched || Form.get('skillName')?.dirty)) {
+          <p>Required</p>
+        }
+        <label for="level-{{i}}">Level</label>
+        <select id="level-{{i}}" formControlName="experienceLevel">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <button type="button" (click)="removeSkill(i)">Remove Skill</button><br>
+      </div>
+    }
+  </div>
+  <button type="button" (click)="addSkill()">Add Skill</button>
+  <button type="submit" [disabled]="Form.invalid">Submit</button>
+</form>

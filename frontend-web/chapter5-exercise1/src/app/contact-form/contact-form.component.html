@@ -1,0 +1,32 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <label for="Fullname">Full Name</label>
+  <input id="Fullname" type="text" formControlName="fullname">
+  @if (contactForm.get('fullname')?.hasError('required') && (contactForm.get('fullname')?.touched || contactForm.get('fullname')?.dirty)) {
+    <p>Required</p>
+  }
+
+  <label for="Email">Email</label>
+  <input id="Email" type="email" formControlName="email">
+  @if (contactForm.get('email')?.hasError('required') && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty)) {
+    <p>Required</p>
+  }
+  @if (contactForm.get('email')?.hasError('email') && (contactForm.get('email')?.touched || contactForm.get('email')?.dirty)) {
+    <p> Invalid email </p>
+  }
+
+  <label for="phone">Phone</label>
+  <input id="phone" type="text" formControlName="phone">
+  @if (contactForm.get('phone')?.hasError('pattern') && (contactForm.get('phone')?.touched || contactForm.get('phone')?.dirty)) {
+    <p>10 digits required</p>
+  }
+
+  <label for="message">Message</label>
+  <textarea id="message" formControlName="message"></textarea>
+  @if (contactForm.get('message')?.hasError('minLength') && (contactForm.get('message')?.touched || contactForm.get('message')?.dirty)) {
+    <p>minimum lengtg is 10 characters</p>
+  }
+
+  <input type="button" value="Submit" [disabled]="contactForm.invalid"/>
+</form>
+
+<p>{{ returnMessage }}</p>

@@ -1,0 +1,10 @@
+input.ng-invalid{ border: 2px solid red}
+input.ng-valid{ border: 2px solid green}
+textarea.ng-invalid{ border: 2px solid red}
+textarea.ng-valid{ border: 2px solid green}
+
+input, textarea{
+  display: block;
+  margin: 0 0 20px 0;
+}
+
