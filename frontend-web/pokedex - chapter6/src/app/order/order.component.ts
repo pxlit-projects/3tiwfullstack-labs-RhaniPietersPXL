@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {LoggingServiceService} from "../services/logging-service.service";
+import {LoggingService} from "../services/logging.service";
 
 @Component({
   selector: 'app-order',
@@ -9,7 +9,7 @@ import {LoggingServiceService} from "../services/logging-service.service";
   styleUrl: './order.component.css'
 })
 export class OrderComponent implements OnInit{
-  logService: LoggingServiceService = inject(LoggingServiceService);
+  logService: LoggingService = inject(LoggingService);
   loggings: string[] = [];
 
   ngOnInit(): void {

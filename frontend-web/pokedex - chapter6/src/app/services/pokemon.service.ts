@@ -4,7 +4,7 @@ import {Pokemon} from "../pokemon";
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonServiceService {
+export class PokemonService {
 
   constructor() { }
 

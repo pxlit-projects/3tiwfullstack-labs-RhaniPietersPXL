@@ -1,0 +1,30 @@
+<h2 class="text-xl mb-3">LogIn</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="mb-4">
+    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+    <input type="email" id="email" formControlName="email"
+           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    @if (loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')) {
+      <div class="text-red-500 text-sm mt-1">Email is required</div>
+    }
+    @if (loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')) {
+      <div class="text-red-500 text-sm mt-1">Invalid email format</div>
+    }
+  </div>
+  <div class="mb-4">
+    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">password:</label>
+    <input type="text" id="password" formControlName="password"
+           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
+      <div class="text-red-500 text-sm mt-1">password is required</div>
+    }
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')) {
+      <div class="text-red-500 text-sm mt-1">Password must be at least 6 characters</div>
+    }
+  </div>
+  @if (errorMessage != null) {
+    <div>{{ errorMessage }}</div>
+  }
+
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+</form>

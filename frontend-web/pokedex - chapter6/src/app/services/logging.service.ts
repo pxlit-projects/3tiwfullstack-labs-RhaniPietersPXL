@@ -4,7 +4,7 @@ import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvid
 @Injectable({
   providedIn: 'root'
 })
-export class LoggingServiceService {
+export class LoggingService {
   loggings: string[] = [];
 
   constructor() { }

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {Pokemon} from "../pokemon";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {PokemonServiceService} from "../services/pokemon-service.service";
+import {PokemonService} from "../services/pokemon.service";
 
 @Component({
   selector: 'app-add-pokemon',
@@ -14,7 +14,7 @@ import {PokemonServiceService} from "../services/pokemon-service.service";
 })
 export class AddPokemonComponent {
   @Output() addPokemon = new EventEmitter<Pokemon>();
-  pokemonService: PokemonServiceService = inject(PokemonServiceService);
+  pokemonService: PokemonService = inject(PokemonService);
 
   fb: FormBuilder = inject(FormBuilder);
   pokemonForm: FormGroup = this.fb.group({

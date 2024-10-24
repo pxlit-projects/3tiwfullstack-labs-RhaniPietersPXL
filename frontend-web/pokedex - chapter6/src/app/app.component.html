@@ -4,10 +4,18 @@
 }
 <div class="pokemonList">
   @for (item of pokemons; track item.id) {
-    <app-pokemonitem [pokemon]="item" [isSelected]="selectedPokemon?.id == item.id" (click)="selectPokemon(item)"></app-pokemonitem>
+    <app-pokemonitem [pokemon]="item" [isSelected]="selectedPokemon?.id == item.id"
+                     (click)="selectPokemon(item)"></app-pokemonitem>
   }
 </div>
 <app-add-pokemon class="addPokemon" (addPokemon)="processAdd($event)"></app-add-pokemon>
 
 <app-product></app-product>
 <app-order></app-order>
+@if (isLoggedIn()) {
+  <p>Logged in as: {{ getUserDetails().name }} ({{ getUserDetails().email }})</p>
+}
+@if (!isLoggedIn()) {
+  <p>You are not logged in.</p>
+  <app-login></app-login>
+}
