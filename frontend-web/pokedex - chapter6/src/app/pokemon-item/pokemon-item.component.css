@@ -1,0 +1,28 @@
+.pokemon-item {
+  display: inline-block;
+  width: 250px;
+  height: 300px;
+  position: relative;
+  margin: 10px;
+}
+
+.pokemon-item img {
+  width: 100px;
+  height: 100px;
+}
+
+.grass {
+  background-color: darkseagreen;
+}
+
+.fire {
+  background-color: indianred;
+}
+
+.water {
+  background-color: steelblue;
+}
+
+.selected {
+  border: 2px solid gold;
+}

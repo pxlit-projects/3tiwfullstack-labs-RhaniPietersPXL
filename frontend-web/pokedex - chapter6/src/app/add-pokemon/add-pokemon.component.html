@@ -1,0 +1,23 @@
+<h2 class="text-xl mb-3">Add Pokemon</h2>
+<form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()" class="pokemon">
+  <div class="mb-4">
+    <label for="Name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+    <input type="text" id="Name" formControlName="name"
+           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    @if (pokemonForm.get('name')?.touched && pokemonForm.get('name')?.hasError('required')) {
+      <div class="text-red-500 text-sm mt-1">Name is required</div>
+    }
+  </div>
+  <div class="mb-4">
+    <label for="Type" class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
+    <select id="Type" formControlName="type">
+      <option value="fire">Fire</option>
+      <option value="grass">Grass</option>
+      <option value="water">Water</option>
+    </select>
+    @if (pokemonForm.get('type')?.touched && pokemonForm.get('type')?.hasError('required')) {
+      <div class="text-red-500 text-sm mt-1">Type is required</div>
+    }
+  </div>
+  <button type="submit">Add Pokemon</button>
+</form>

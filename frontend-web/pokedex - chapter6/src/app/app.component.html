@@ -1,0 +1,11 @@
+<h1>Pokedex</h1>
+@if (selectedPokemon) {
+  <p>Geselecteerde pokemon: {{ selectedPokemon.name }}</p>
+}
+<div class="pokemonList">
+  @for (item of pokemons; track item.id) {
+    <app-pokemonitem [pokemon]="item" [isSelected]="selectedPokemon?.id == item.id" (click)="selectPokemon(item)"></app-pokemonitem>
+  }
+</div>
+<app-add-pokemon class="addPokemon" (addPokemon)="processAdd($event)"></app-add-pokemon>
+
