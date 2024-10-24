@@ -1,7 +1,7 @@
 import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {Pokemon} from "../pokemon";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {PokemonServiceService} from "../pokemon-service.service";
+import {PokemonServiceService} from "../services/pokemon-service.service";
 
 @Component({
   selector: 'app-add-pokemon',

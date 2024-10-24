@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Pokemon} from "./pokemon";
+import {Pokemon} from "../pokemon";
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,6 @@ import {Pokemon} from "./pokemon";
 export class PokemonServiceService {
 
   constructor() { }
-
 
   private _pokemons: Pokemon[] = [
     new Pokemon(1, "Bulbasaur", "grass", "1.png"),
@@ -18,7 +17,6 @@ export class PokemonServiceService {
     new Pokemon(6, "Charizard", "fire", "6.png"),
     new Pokemon(7, "Squirtle", "water", "7.png"),
   ];
-
 
   getPokemons(): Pokemon[] {
     return this._pokemons;
