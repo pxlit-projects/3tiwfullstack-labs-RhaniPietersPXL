@@ -1,1 +1,7 @@
-<p>hero works!</p>
+<div class="hero">
+  <img [src]="hero.avatar" alt="{{ hero.name }}"/>
+  <h3>{{ hero.name }}</h3>
+  <p>Class: {{ hero.class }}</p>
+  <p>DPS: {{ hero.dps }}</p>
+  <p>Difficulty: <span [innerHTML]="hero.difficulty"></span></p>
+</div>

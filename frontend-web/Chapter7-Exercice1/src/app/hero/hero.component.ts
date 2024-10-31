@@ -10,5 +10,4 @@ import {Hero} from "../models/hero.model";
 })
 export class HeroComponent {
   @Input() hero!: Hero;
-
 }
