@@ -1,1 +1,8 @@
-<p>home works!</p>
+<h1>HOME</h1>
+<div class="md:container md:mx-auto container mx-auto mt-10">
+  <div class="grid grid-cols-3 gap-6">
+    @for(item of products; track item.id){
+      <app-product-item [product]="item"></app-product-item>
+    }
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="product-card bg-gray-200 rounded-lg shadow-md border border-gray-300">
+  <div class="p-4">
+    <h2 class="text-lg font-semibold mb-2">{{ product.name }}</h2>
+    <button [routerLink]="['/product', product.id]" class="details-button">Details</button>
+  </div>
+</div>

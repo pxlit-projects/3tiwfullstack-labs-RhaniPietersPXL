@@ -1,17 +1,16 @@
-import { Component, OnDestroy, inject } from '@angular/core';
-import { AsyncPipe, NgClass, NgIf } from '@angular/common';
-import { CustomerService } from '../../../shared/services/customer.service';
-import { Customer } from '../../../shared/models/customer.model';
-import { Observable, Subscription, tap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, inject} from '@angular/core';
+import {AsyncPipe, NgClass, NgIf} from '@angular/common';
+import {CustomerService} from '../../../shared/services/customer.service';
+import {Customer} from '../../../shared/models/customer.model';
+import {Observable, Subscription, tap} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-customer-detail',
   standalone: true,
   imports: [NgIf, NgClass, AsyncPipe],
   templateUrl: './customer-detail.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class CustomerDetailComponent implements OnDestroy {
   customerService: CustomerService = inject(CustomerService);
@@ -31,7 +30,7 @@ export class CustomerDetailComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.sub){
+    if (this.sub) {
       this.sub.unsubscribe();
     }
   }
