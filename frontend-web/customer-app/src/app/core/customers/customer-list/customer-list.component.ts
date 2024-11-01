@@ -27,13 +27,15 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
-  processAdd(customer: Customer) {
+/*  processAdd(customer: Customer) {
     this.customerService.addCustomer(customer).subscribe({
       next: () => {
         this.fetchData();
       }
     });
-  }
+
+    html = <app-add-customer (addCustomer)="processAdd($event)"></app-add-customer>
+  }*/
 
   fetchData(): void {
     this.customerService.getCustomers().subscribe({
