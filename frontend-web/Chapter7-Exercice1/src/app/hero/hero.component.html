@@ -4,4 +4,5 @@
   <p>Class: {{ hero.class }}</p>
   <p>DPS: {{ hero.dps }}</p>
   <p>Difficulty: <span [innerHTML]="hero.difficulty"></span></p>
+  <p>Rating: {{ hero.difficulty | star }}</p>
 </div>
