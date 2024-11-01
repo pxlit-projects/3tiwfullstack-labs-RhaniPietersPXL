@@ -20,19 +20,25 @@ export class BookService {
     );
   }
 
-  addBook(book: Book) {
+  addBook(book: Book): Observable<Book> {
     return this.http.post<Book>(this.booksUrl, book);
   }
 
+  deleteBook(bookId: number): Observable<void> {
+    return this.http.delete<void>(`${this.booksUrl}/${bookId}`);
+  }
   filterBooks(filter: Filter): Observable<Book[]> {
     return this.getBooks().pipe(
-      map(books => books.filter(hero => this.isBookMatchingFilter(hero, filter)))
+      map(books => books.filter(book => this.isBookMatchingFilter(book, filter)))
     );
   }
 
   private isBookMatchingFilter(book: Book, filter: Filter) {
-    return book.title.toLowerCase().includes(filter.title.toLowerCase());
+    const title = book.title?.toLowerCase() || '';
+    return title.includes(filter.title.toLowerCase());
   }
 
-
+  updateBook(updatedBook: Book) {
+    return this.http.put<void>(`${this.booksUrl}/${updatedBook._id}`, updatedBook);
+  }
 }

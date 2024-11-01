@@ -3,4 +3,7 @@
   <p><strong>Author:</strong> {{ book.author }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Genre:</strong> {{ book.genre }}</p>
+  <p><strong>Version:</strong> {{ book.__v }}</p>
+  <button (click)="onDelete()" class="text-red-500">Delete</button>
+  <button (click)="onUpdate()" class="text-red-500">Update</button>
 </div>

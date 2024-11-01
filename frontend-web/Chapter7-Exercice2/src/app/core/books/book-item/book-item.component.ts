@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Book} from "../../../shared/models/book.model";
 
 @Component({
@@ -10,4 +10,14 @@ import {Book} from "../../../shared/models/book.model";
 })
 export class BookItemComponent {
   @Input() book!: Book;
+  @Output() deleteBook = new EventEmitter<number>();
+  @Output() updateBook = new EventEmitter<number>();
+
+  onDelete() {
+    this.deleteBook.emit(this.book._id);
+  }
+
+  onUpdate() {
+    this.updateBook.emit(this.book._id);
+  }
 }

@@ -17,12 +17,10 @@ export class AddBookComponent {
   @Output() addBook = new EventEmitter<Book>();
   fb: FormBuilder = inject(FormBuilder);
   bookForm: FormGroup = this.fb.group({
-    _id: ['', Validators.required],
     title: ['', Validators.required],
     author: ['', Validators.required],
     isbn: ['', Validators.required],
     genre: ['', Validators.required],
-    __v: ['', Validators.required],
   });
 
   onSubmit() {

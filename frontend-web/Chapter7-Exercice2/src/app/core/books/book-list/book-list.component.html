@@ -2,8 +2,20 @@
 <div class="md:container md:mx-auto container mx-auto mt-10">
   <div class="grid grid-cols-3 gap-6">
     @for (item of filteredData$ | async; track item.title) {
-      <app-book-item [book]="item"></app-book-item>
+      <app-book-item [book]="item" (deleteBook)="processDelete($event)" (updateBook)="processUpdate(item)"></app-book-item>
     }
   </div>
 </div>
-<app-add-book (addBook)="processAdd($event)"></app-add-book>
+
+<button (click)="toggleAddBookForm()" class="bg-blue-500 text-white py-2 px-4 rounded mt-4">
+  {{ showAddBookForm ? 'Cancel' : 'Add New Book' }}
+</button>
+
+@if(showAddBookForm){
+  <app-add-book (addBook)="processAdd($event)"></app-add-book>
+}
+
+@if(showUpdateBookForm){
+  <app-update-book [book]="currentBook" (updateBook)="handleUpdateBook($event)"></app-update-book>
+}
+
