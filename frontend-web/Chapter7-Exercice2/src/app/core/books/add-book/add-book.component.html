@@ -1,0 +1,56 @@
+<div class="container mx-auto mt-5">
+  <h2 class="text-xl mb-3">Add Book</h2>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="_id" class="block text-gray-700 text-sm font-bold mb-2">ID:</label>
+      <input type="number" id="_id" formControlName="_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if (bookForm.get('_id')?.touched && bookForm.get('_id')?.hasError('required')) {
+        <div class="text-red-500 text-sm mt-1">ID is required</div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+      <input type="text" id="title" formControlName="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if (bookForm.get('title')?.touched && bookForm.get('title')?.hasError('required')) {
+        <div class="text-red-500 text-sm mt-1">Title is required</div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="author" class="block text-gray-700 text-sm font-bold mb-2">Author:</label>
+      <input type="text" id="author" formControlName="author" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if (bookForm.get('author')?.touched && bookForm.get('author')?.hasError('required')) {
+        <div class="text-red-500 text-sm mt-1">Author is required</div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="isbn" class="block text-gray-700 text-sm font-bold mb-2">ISBN:</label>
+      <input type="text" id="isbn" formControlName="isbn" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if (bookForm.get('isbn')?.touched && bookForm.get('isbn')?.hasError('required')) {
+        <div class="text-red-500 text-sm mt-1">ISBN is required</div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="genre" class="block text-gray-700 text-sm font-bold mb-2">Genre:</label>
+      <input type="text" id="genre" formControlName="genre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if (bookForm.get('genre')?.touched && bookForm.get('genre')?.hasError('required')) {
+        <div class="text-red-500 text-sm mt-1">Genre is required</div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="__v" class="block text-gray-700 text-sm font-bold mb-2">Version:</label>
+      <input type="number" id="__v" formControlName="__v" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      @if (bookForm.get('__v')?.touched && bookForm.get('__v')?.hasError('required')) {
+        <div class="text-red-500 text-sm mt-1">Version is required</div>
+      }
+    </div>
+
+    <button type="submit" [ngClass]="{'bg-blue-500 hover:bg-blue-700': bookForm.valid, 'bg-gray-500': !bookForm.valid}" class="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [disabled]="!bookForm.valid">
+      Add Book
+    </button>
+  </form>
+</div>
