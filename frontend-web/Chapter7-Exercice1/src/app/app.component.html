@@ -2,7 +2,7 @@
 <app-search (filterChanged)="handleFilter($event)"></app-search>
 <div class="md:container md:mx-auto container mx-auto mt-10">
   <div class="grid grid-cols-3 gap-6">
-    @for(item of filteredData; track item.name){
+    @for(item of filteredData$ | async; track item.name){
       <app-hero [hero]="item"></app-hero>
     }
   </div>

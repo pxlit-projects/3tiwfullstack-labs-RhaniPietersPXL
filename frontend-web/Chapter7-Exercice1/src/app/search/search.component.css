@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  background-color: lightgrey;
+  padding: 10px;
+}
+
+div {
+padding-bottom: 10px;
+}

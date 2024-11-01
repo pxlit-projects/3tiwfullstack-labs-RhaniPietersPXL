@@ -1,5 +1,5 @@
 export interface Hero {
-  id: string;
+  id?: string;
   abilities: string[];
   avatar: string;
   class: string;
