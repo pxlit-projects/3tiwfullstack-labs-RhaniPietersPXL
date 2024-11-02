@@ -9,6 +9,8 @@ import be.pxl.services.domain.dto.OrganizationResponse;
 import be.pxl.services.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -18,9 +20,11 @@ public class OrganizationService implements IOrganizationService {
     private final OrganizationRepository organizationRepository;
     private final DepartmentClient departmentClient;
     private final EmployeeClient employeeClient;
+    private static final Logger log = LoggerFactory.getLogger(OrganizationService.class);
 
     @Override
     public List<OrganizationResponse> getAllOrganizations() {
+        log.info("Fetching all organizations");
         List<Organization> organizations = organizationRepository.findAll();
         return organizations.stream()
                 .map(organization -> OrganizationResponse.builder()
@@ -32,6 +36,7 @@ public class OrganizationService implements IOrganizationService {
 
     @Override
     public OrganizationResponse getOrganizationById(Long id) {
+        log.debug("Finding organization by ID: {}", id);
         Organization organization = organizationRepository.findById(id).orElse(null);
         assert organization != null;
         return OrganizationResponse.builder()
@@ -42,6 +47,7 @@ public class OrganizationService implements IOrganizationService {
 
     @Override
     public OrganizationResponse getOrganizationWithDepartmentsById(Long id) {
+        log.info("Fetching organization with departments by ID: {}", id);
         Organization organization = organizationRepository.findById(id).orElse(null);
         List<DepartmentResponse> departments = departmentClient.getDepartmentsByOrganization(id);
         return  OrganizationResponse.builder()
@@ -53,6 +59,7 @@ public class OrganizationService implements IOrganizationService {
 
     @Override
     public OrganizationResponse getOrganizationWithDepartmentsAndEmployeesById(Long id) {
+        log.info("Fetching organization with departments and employees by ID: {}", id);
         Organization organization = organizationRepository.findById(id).orElse(null);
         List<DepartmentResponse> departments = departmentClient.getDepartmentsByOrganization(id);
         List<EmployeeResponse> employees = employeeClient.getEmployeesByOrganization(id);
@@ -66,6 +73,7 @@ public class OrganizationService implements IOrganizationService {
 
     @Override
     public OrganizationResponse getOrganizationWithEmployeesById(Long id) {
+        log.info("Fetching organization with employees by ID: {}", id);
         Organization organization = organizationRepository.findById(id).orElse(null);
         List<EmployeeResponse> employees = employeeClient.getEmployeesByOrganization(id);
         return  OrganizationResponse.builder()
