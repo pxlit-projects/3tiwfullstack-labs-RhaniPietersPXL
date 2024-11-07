@@ -10,7 +10,9 @@ import be.pxl.services.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 import java.util.List;
 
@@ -21,9 +23,13 @@ public class EmployeeService implements IEmployeeService {
     private final NotificationClient notificationClient;
     private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Override
     public List<EmployeeResponse> getAllEmployees() {
         log.info("Retrieving all employees");
+        rabbitTemplate.convertAndSend("myQueue", "Hello, world!");
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream().map(this::mapToEmployeeResponse).toList();
     }
