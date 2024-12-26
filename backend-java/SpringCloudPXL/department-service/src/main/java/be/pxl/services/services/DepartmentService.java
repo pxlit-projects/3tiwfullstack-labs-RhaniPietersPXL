@@ -30,19 +30,13 @@ public class DepartmentService implements IDepartmentService {
 
     private DepartmentResponse mapToDepartmentResponse(Department department) {
         log.info("Mapping department to response: {}", department);
-        return DepartmentResponse.builder()
-                .name(department.getName())
-                .organizationId(department.getOrganizationId())
-                .build();
+        return DepartmentResponse.builder().name(department.getName()).organizationId(department.getOrganizationId()).build();
     }
 
     @Override
     public void addDepartment(DepartmentRequest newDepartment) {
         log.info("Adding new department: {}", newDepartment);
-        Department department = Department.builder()
-                .name(newDepartment.getName())
-                .organizationId(newDepartment.getOrganizationId())
-                .build();
+        Department department = Department.builder().name(newDepartment.getName()).organizationId(newDepartment.getOrganizationId()).build();
         departmentRepository.save(department);
     }
 
@@ -65,14 +59,9 @@ public class DepartmentService implements IDepartmentService {
     public List<DepartmentResponse> getDepartmentsWithEmployeesByOrganization(Long organizationId) {
         log.info("Finding departments by organization id: {} with employees", organizationId);
         List<Department> departments = departmentRepository.findByOrganizationId(organizationId);
-        return departments.stream()
-                .map(department -> {
-                    List<EmployeeResponse> employees = employeeClient.getEmployeesFromDepartment(department.getId());
-                    return DepartmentResponse.builder()
-                            .name(department.getName())
-                            .organizationId(department.getOrganizationId())
-                            .employees(employees)
-                            .build();
-                }).toList();
+        return departments.stream().map(department -> {
+            List<EmployeeResponse> employees = employeeClient.getEmployeesFromDepartment(department.getId());
+            return DepartmentResponse.builder().name(department.getName()).organizationId(department.getOrganizationId()).employees(employees).build();
+        }).toList();
     }
 }

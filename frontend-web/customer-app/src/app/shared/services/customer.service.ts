@@ -6,43 +6,43 @@ import {map, Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CustomerService {
-  api: string = environment.apiUrl;
-  http: HttpClient = inject(HttpClient);
+    api: string = environment.apiUrl;
+    http: HttpClient = inject(HttpClient);
 
-  constructor() {
-  }
+    constructor() {
+    }
 
-  getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.api);
-  }
+    getCustomers(): Observable<Customer[]> {
+        return this.http.get<Customer[]>(this.api);
+    }
 
-  addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.api, customer);
-  }
+    addCustomer(customer: Customer): Observable<Customer> {
+        return this.http.post<Customer>(this.api, customer);
+    }
 
-  updateCustomer(customer: Customer): Observable<Customer>{
-    return this.http.put<Customer>('/api/customers/' + customer.id, customer);
-  }
+    updateCustomer(customer: Customer): Observable<Customer> {
+        return this.http.put<Customer>('/api/customers/' + customer.id, customer);
+    }
 
-  getCustomer(id: number): Observable<Customer> {
-    return this.http.get<Customer>('api/customers/' + id);
-  }
+    getCustomer(id: number): Observable<Customer> {
+        return this.http.get<Customer>('api/customers/' + id);
+    }
 
 
-  filterCustomers(filter: Filter): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.api).pipe(
-      map((customers: Customer[]) => customers.filter(customer => this.isCustomerMatchingFilter(customer, filter)))
-    );
-  }
+    filterCustomers(filter: Filter): Observable<Customer[]> {
+        return this.http.get<Customer[]>(this.api).pipe(
+            map((customers: Customer[]) => customers.filter(customer => this.isCustomerMatchingFilter(customer, filter)))
+        );
+    }
 
-  private isCustomerMatchingFilter(customer: Customer, filter: Filter): boolean {
-    const matchesName = customer.name.toLowerCase().includes(filter.name.toLowerCase());
-    const matchesCity = customer.city.toLowerCase().includes(filter.city.toLowerCase());
-    const matchesVat = filter.vat ? customer.vat === filter.vat : true;
+    private isCustomerMatchingFilter(customer: Customer, filter: Filter): boolean {
+        const matchesName = customer.name.toLowerCase().includes(filter.name.toLowerCase());
+        const matchesCity = customer.city.toLowerCase().includes(filter.city.toLowerCase());
+        const matchesVat = filter.vat ? customer.vat === filter.vat : true;
 
-    return matchesName && matchesCity && matchesVat;
-  }
+        return matchesName && matchesCity && matchesVat;
+    }
 }
